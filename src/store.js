@@ -77,7 +77,7 @@ class Store {
         if (item.code === code) {
           item.selected = !item.selected;
         }
-        if (item.selected) {
+        if (item.code === code & item.selected) {
           item.highlight += 1;
         }
         return item;
