@@ -14,8 +14,8 @@ class Store {
     this.listners.push(callback);
     // Возвращаем функцию для отписки
     return () => {
-      this.listners = this.listners.filter(item => item !== callback);
-    }
+      this.listners = this.listners.filter((item) => item !== callback);
+    };
   }
 
   /**
@@ -47,13 +47,13 @@ class Store {
    * Создание записи
    */
   createItem() {
-    const code = Math.max(0, ...this.state.items.map(item => item.code)) + 1;
+    const code = Math.max(0, ...this.state.items.map((item) => item.code)) + 1;
     this.setState({
       items: this.state.items.concat({
         code,
-        title: 'Новая запись №'+code,
-        highlight: 0
-      })
+        title: "Новая запись №" + code,
+        highlight: 0,
+      }),
     });
   }
 
@@ -63,7 +63,7 @@ class Store {
    */
   deleteItem(code) {
     this.setState({
-      items: this.state.items.filter(item => item.code !== code)
+      items: this.state.items.filter((item) => item.code !== code),
     });
   }
 
@@ -73,12 +73,15 @@ class Store {
    */
   selectItem(code) {
     this.setState({
-      items: this.state.items.map(item => {
-        if (item.code === code){
+      items: this.state.items.map((item) => {
+        if (item.code === code) {
           item.selected = !item.selected;
         }
+        if (item.selected) {
+          item.highlight += 1;
+        }
         return item;
-      })
+      }),
     });
   }
 }
