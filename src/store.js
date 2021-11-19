@@ -51,7 +51,8 @@ class Store {
     this.setState({
       items: this.state.items.concat({
         code,
-        title: 'Новая запись №'+code
+        title: 'Новая запись №'+code,
+        highlight: 0
       })
     });
   }
