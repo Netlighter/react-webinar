@@ -13,7 +13,7 @@ const store = new Store({
     { code: 3, title: "Заголовок", highlight: 5 },
     { code: 4, title: "Короткое название", highlight: 1 },
     { code: 5, title: "Запись", highlight: 0 },
-    { code: 6, title: "Пример названия", highlight: ''},
+    { code: 6, title: "Пример названия", highlight: 0},
     { code: 7, title: "Седьмой", highlight: 298 },
   ],
 });
