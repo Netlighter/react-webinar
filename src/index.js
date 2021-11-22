@@ -9,12 +9,12 @@ const root = document.getElementById("app");
 const store = new Store({
   items: [
     { code: 1, title: "Название элемента", highlight: 0 },
-    { code: 2, title: "Некий объект", highlight: 14 },
-    { code: 3, title: "Заголовок", highlight: 5 },
-    { code: 4, title: "Короткое название", highlight: 1 },
+    { code: 2, title: "Некий объект", highlight: 0 },
+    { code: 3, title: "Заголовок", highlight: 0 },
+    { code: 4, title: "Короткое название", highlight: 0 },
     { code: 5, title: "Запись", highlight: 0 },
     { code: 6, title: "Пример названия", highlight: 0},
-    { code: 7, title: "Седьмой", highlight: 298 },
+    { code: 7, title: "Седьмой", highlight: 0 },
   ],
 });
 
