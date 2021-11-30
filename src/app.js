@@ -1,27 +1,42 @@
-import React, {useCallback} from 'react';
+import React, { useCallback, useState } from "react";
 import Controls from "./components/controls";
 import List from "./components/list";
 import Layout from "./components/layout";
+import CartLayout from "./components/cart-layout";
 
 /**
  * Приложение
  * @param store {Store} Состояние с действиями
  */
-function App({store}) {
-  console.log('App');
-
+function App({ store }) {
   const callbacks = {
     onCreateItem: useCallback(() => store.createItem(), [store]),
     onSelectItem: useCallback((code) => store.selectItem(code), [store]),
-    onDeleteItem: useCallback((code) => store.deleteItem(code), [store])
-  }
+    onAddToCart: useCallback((code) => store.addToCart(code), [store]),
+  };
+
+  const [isCartOpen, setCartState] = useState(false);
 
   return (
-    <Layout head={<h1>Приложение на чистом JS</h1>}>
-      <Controls onCreate={callbacks.onCreateItem}/>
-      <List items={store.getState().items}
-            onSelectItem={callbacks.onSelectItem}
-            onDeleteItem={callbacks.onDeleteItem}/>
+    <Layout head={<h1>Магазин</h1>}>
+      <Controls
+        itemAmount={store.getState().itemAmount}
+        itemPrice={store.getState().itemPrice}
+        handleOpen={() => setCartState(true)}
+      />
+      <List
+        items={store.getState().items}
+        onSelectItem={callbacks.onSelectItem}
+        onAddToCart={callbacks.onAddToCart}
+      />
+      {isCartOpen ? (
+        <CartLayout
+          store={store.getState()}
+          itemAmount={store.getState().itemAmount}
+          itemPrice={store.getState().itemPrice}
+          handleClose={() => setCartState(false)}
+        />
+      ) : null}
     </Layout>
   );
 }

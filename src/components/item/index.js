@@ -2,18 +2,18 @@ import React, {useCallback, useState} from "react";
 import propTypes from 'prop-types';
 import plural from 'plural-ru';
 import './styles.css';
+import numberFormatter from 'number-formatter';
 
-function Item({item, onSelect, onDelete}){
-  console.log('Item', item.title);
+function Item({item, onSelect, onAddToCart}){
 
   const [counter, setCounter] = useState(0);
 
   const callbacks = {
     onClick: useCallback(() => {
-      // onSelect(item.code);
-      // if (!item.selected){
+      onSelect(item.code);
+      if (!item.selected){
         setCounter(counter + 1);
-      // }
+      }
     }, [item, onSelect, counter, setCounter])
   };
 
@@ -24,9 +24,12 @@ function Item({item, onSelect, onDelete}){
         {item.title}
         {counter ? ` | Выделялся ${counter} ${plural(counter, 'раз', 'раза', 'раз')}` : null}
       </div>
+      <div className='Item__price'>
+        {numberFormatter( "#,##0. ₽", item.price)}
+      </div>
       <div className='Item__actions'>
-        <button onClick={() => onDelete(item.code)}>
-          Удалить
+        <button onClick={() => onAddToCart(item.code)}>
+          Добавить
         </button>
       </div>
     </div>

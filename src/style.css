@@ -3,6 +3,7 @@ body{
     padding: 0;
     background: #535353;
     font-family: sans-serif;
+    z-index: 10;
 }
 
 /* Страница*/
@@ -51,6 +52,7 @@ body{
 .Item{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 .Item__title{
     width: 30%;
@@ -68,3 +70,5 @@ body{
 .Item__number{
     padding: 20px 10px 20px 20px;
 }
+
+
