@@ -54,8 +54,8 @@ class Store {
         title: "Новая запись №" + code,
       }),
       cart: this.state.cart,
-      itemAmount: this.getCartAmount(),
-      itemPrice: this.getCartPrice(),
+      itemAmount: this.countCartAmount(),
+      itemPrice: this.countCartPrice(),
     });
   }
 
@@ -67,8 +67,8 @@ class Store {
     this.setState({
       items: this.state.items.filter((item) => item.code !== code),
       cart: this.state.cart,
-      itemAmount: this.getCartAmount(),
-      itemPrice: this.getCartPrice(),
+      itemAmount: this.countCartAmount(),
+      itemPrice: this.countCartPrice(),
     });
   }
 
@@ -88,24 +88,25 @@ class Store {
         return item;
       }),
       cart: this.state.cart,
-      itemAmount: this.getCartAmount(),
-      itemPrice: this.getCartPrice(),
+      itemAmount: this.countCartAmount(),
+      itemPrice: this.countCartPrice(),
     });
   }
 
-  getCartAmount() {
+  countCartAmount() {
     let amount = 0;
     this.state.cart.map((item) => {
       amount = amount + item.amount;
     });
     return amount;
   }
-  // todo залупа с id какая-то
-  getCartPrice() {
+
+  countCartPrice() {
     let price = 0;
     this.state.cart.map((item) => {
       //супердупермегакрутой метод поиска цены по items!
-      price = price + Number(this.state.items.find((i) => i.title === item.title).price) * item.amount;
+      price =
+        price + Number(this.state.items.find((i) => i.title === item.title).price) * item.amount;
     });
     console.log(price);
     return price;
@@ -119,11 +120,12 @@ class Store {
       this.setState({
         items: this.state.items,
         cart: this.state.cart.map((item) => {
-          if (item.title === foundItem.title) item.amount = item.amount + 1;
+          if (item.title === foundItem.title) return { ...item, amount: item.amount + 1 };
+
           return item;
         }),
-        itemAmount: this.getCartAmount(),
-        itemPrice: this.getCartPrice(),
+        itemAmount: this.countCartAmount(),
+        itemPrice: this.countCartPrice(),
       });
     } else
       this.setState({
@@ -132,10 +134,10 @@ class Store {
           code: foundItem.code,
           title: foundItem.title,
           price: foundItem.price,
-          amount: 1
+          amount: 1,
         }),
-        itemAmount: this.getCartAmount(),
-        itemPrice: this.getCartPrice(),
+        itemAmount: this.countCartAmount(),
+        itemPrice: this.countCartPrice(),
       });
     console.log(this.state);
   }

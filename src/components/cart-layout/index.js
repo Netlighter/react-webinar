@@ -16,7 +16,7 @@ const CartLayout = ({ store, itemAmount, itemPrice, handleClose }) => {
         </div>
         <div className='Cart__body'>
           {store.cart.map((item) => (
-            <div className='Cart-item'>
+            <div className='Cart-item' key={item.code}>
               <div className='Cart-item__number'>{item.code}</div>
               <div className='Cart-item__title'>{item.title}</div>
 

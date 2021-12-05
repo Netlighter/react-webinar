@@ -22,13 +22,13 @@ function Controls({ itemAmount, itemPrice, handleOpen }) {
 }
 
 Controls.propTypes = {
-  onCreate: propTypes.func.isRequired,
-  getCartAmount: propTypes.func.isRequired,
+  itemAmount: propTypes.number.isRequired,
+  itemPrice: propTypes.number.isRequired,
+  handleOpen: propTypes.func.isRequired,
 };
 
 Controls.defaultProps = {
-  onCreate: () => {},
-  getCartAmount: () => {},
+  handleOpen: () => {},
 };
 
 export default React.memo(Controls);
