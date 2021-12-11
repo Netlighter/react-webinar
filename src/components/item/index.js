@@ -1,36 +1,16 @@
-import React, {useCallback, useState} from "react";
+import React from 'react';
 import propTypes from 'prop-types';
-import plural from 'plural-ru';
 import './styles.css';
-import numberFormatter from 'number-formatter';
+import numberFormat from "../../utils/number-format";
 
-function Item({item, onSelect, onAddToCart}){
-
-  const [counter, setCounter] = useState(0);
-
-  const callbacks = {
-    onClick: useCallback(() => {
-      onSelect(item.code);
-      if (!item.selected){
-        setCounter(counter + 1);
-      }
-    }, [item, onSelect, counter, setCounter])
-  };
-
+function Item({item, onAdd}) {
   return (
-    <div className={'Item'  + (item.selected ? ' Item_selected' : '')} onClick={callbacks.onClick}>
-      <div className='Item__number'>{item.code}</div>
-      <div className='Item__title'>
-        {item.title}
-        {counter ? ` | Выделялся ${counter} ${plural(counter, 'раз', 'раза', 'раз')}` : null}
-      </div>
-      <div className='Item__price'>
-        {numberFormatter( "#,##0. ₽", item.price)}
-      </div>
-      <div className='Item__actions'>
-        <button onClick={() => onAddToCart(item.code)}>
-          Добавить
-        </button>
+    <div className='Item'>
+      <div className='Item__number'>{item._key}</div>
+      <div className='Item__title'>{item.title}</div>
+      <div className='Item__right'>
+        <div className='Item__price'>{numberFormat(item.price)} ₽</div>
+        <button onClick={() => onAdd(item._id)}>Добавить</button>
       </div>
     </div>
   )
@@ -38,13 +18,11 @@ function Item({item, onSelect, onAddToCart}){
 
 Item.propTypes = {
   item: propTypes.object.isRequired,
-  onSelect: propTypes.func.isRequired,
-  onDeleted: propTypes.func.isRequired
+  onAdd: propTypes.func,
 }
 
 Item.defaultProps = {
-  onSelect: () => {},
-  onDeleted: () => {}
+  onAdd: () => {}
 }
 
 export default React.memo(Item);
