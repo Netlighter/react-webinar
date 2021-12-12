@@ -1,0 +1,29 @@
+/*Список*/
+.Paginator {
+  display: flex;
+  justify-content: right;
+  gap: 0.1rem;
+  padding-top: 10px;
+  padding-right: 1.5rem;
+}
+
+.Paginator__item {
+  padding: 2px;
+  cursor: pointer;
+}
+
+.Paginator__item:hover{
+  background-color: #e1e1e1;
+  cursor: pointer;
+}
+.Paginator__item--selected {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.Paginator__item--selected:hover {
+    background-color: #000000;
+    color: #ffffff;
+    cursor:default;
+  }
+  

@@ -14,6 +14,8 @@ function Basket(){
     amount: state.basket.amount
   }));
 
+
+
   const store = useStore();
 
   const callbacks = {
