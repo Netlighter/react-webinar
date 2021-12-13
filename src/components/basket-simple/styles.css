@@ -1,13 +1,16 @@
 /* Контрол с общими действиями */
 .BasketSimple{
     display: flex;
-    justify-content: flex-end;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 20px 20px 20px 10px;
     font-size: 18px;
+    align-items: center;
 }
 
-.BasketSimple__label{
-
+.BasketSimple__return-button {
+    
+    flex-grow: 2;
+    
 }
 
 .BasketSimple__total{

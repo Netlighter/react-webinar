@@ -17,6 +17,7 @@ let config = {
     filename: '[name].js',
     // Очистить ./dist от предыдущей сборки
     clean: true,
+    publicPath: "/",
   },
   plugins: [
     // Сборка стилей в отдельный файл
@@ -25,7 +26,7 @@ let config = {
     new HtmlWebPackPlugin({
       template: './index.html',
       filename: './index.html',
-      base: '',
+      base: '/',
     }),
   ],
   //

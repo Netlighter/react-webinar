@@ -15,7 +15,7 @@ class CatalogStore extends StoreModule {
   /**
    * Загрузка списка товаров
    */
-  load = async (page) => {
+   load = async (page) => {
     const response = await fetch(`/api/v1/articles?lang=ru&limit=10&skip=${10*(page-1)}&fields=%2A`);
     const json = await response.json();
     this.setState({

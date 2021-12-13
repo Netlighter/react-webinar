@@ -85,6 +85,10 @@ class Store {
   get catalog(){
     return this.get('catalog');
   }
+
+  get articles(){
+    return this.get('articles');
+  }
 }
 
 export default Store;
