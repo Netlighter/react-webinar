@@ -3,7 +3,7 @@ import Main from "./main";
 import Basket from "./basket";
 import useSelector from "../utils/use-selector";
 import { Route, Routes } from "react-router-dom";
-import ItemArticle from "../components/item-article";
+import Article from "./article";
 
 /**
  * Приложение
@@ -28,7 +28,7 @@ function App() {
         path={"/article/:articleId"}
         element={
           <>
-            <ItemArticle />
+            <Article />
             {select.name === "basket" && <Basket />}{" "}
           </>
         }

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Item from "../../components/item";
 import Layout from "../../components/layout";
 import BasketSimple from "../../components/basket-simple";
