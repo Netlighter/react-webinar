@@ -2,7 +2,6 @@
  * Хранилище состояния приложения
  */
 class Store {
-
   /**
    * @param modules {Object} Классы StoreModule для создания экземпляров модулей хранилища
    */
@@ -31,8 +30,8 @@ class Store {
     this.listners.push(callback);
     // Возвращаем функцию для отписки
     return () => {
-      this.listners = this.listners.filter(item => item !== callback);
-    }
+      this.listners = this.listners.filter((item) => item !== callback);
+    };
   }
 
   /**
@@ -60,34 +59,33 @@ class Store {
    * @param name {String} Название модуля
    * @return {StoreModule}
    */
-  get(name){
+  get(name) {
     return this.modules[name];
   }
-
 
   /**
    * @return {BasketStore}
    */
-  get basket(){
-    return this.get('basket');
+  get basket() {
+    return this.get("basket");
   }
 
   /**
    * @return {ModalsStore}
    */
-  get modals(){
-    return this.get('modals');
+  get modals() {
+    return this.get("modals");
   }
 
   /**
    * @return {CatalogStore}
    */
-  get catalog(){
-    return this.get('catalog');
+  get catalog() {
+    return this.get("catalog");
   }
 
-  get articles(){
-    return this.get('articles');
+  get articles() {
+    return this.get("articles");
   }
 }
 

@@ -4,11 +4,11 @@ import propTypes from "prop-types";
 import numberFormat from "../../utils/number-format";
 import "./styles.css";
 
-function ItemBasket({ item }) {
+function ItemBasket({ item, onClose }) {
   return (
     <div className="ItemBasket">
       <div className="ItemBasket__number">{item._key}</div>
-      <div className="ItemBasket__title">
+      <div className="ItemBasket__title" onClick={onClose}>
         <Link to={`/article/${item._id}`}>{item.title}</Link>
       </div>
       <div className="ItemBasket__right">

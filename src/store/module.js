@@ -2,7 +2,6 @@
  * Базовый класс модуля хранилища
  */
 class StoreModule {
-
   /**
    * @param store {Store} Ссылка на хранилище
    * @param name {String} Навзание модуля (ключ данных в state)
