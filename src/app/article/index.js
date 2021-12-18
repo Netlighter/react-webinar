@@ -15,8 +15,10 @@ const Article = () => {
 
   const { articleId } = useParams();
 
+  const limit = 10;
+
   useEffect(async () => {
-    await store.articles.load(articleId);
+    await store.articles.load(articleId, limit);
   }, [articleId]);
 
   const store = useStore();

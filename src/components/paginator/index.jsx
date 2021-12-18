@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import propTypes from "prop-types";
 import "./styles.css";
 
-function Paginator({ pageNumber, load }) {
-  const pages = [1, 2, 3, 4, 5];
+function Paginator({ pageNumber, limit, count, load }) {
+
+  const roundCount = Math.ceil(count/limit)
+
+  const pages = [...Array(roundCount+1).keys()].slice(1);
 
   const handleClick = async (e) => {
     e.preventDefault();

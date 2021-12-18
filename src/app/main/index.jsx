@@ -11,13 +11,15 @@ function Main() {
   const select = useSelector((state) => ({
     items: state.catalog.items,
     pageNumber: state.catalog.pageNumber,
+    limit: state.catalog.limit,
+    count: state.catalog.count,
     amount: state.basket.amount,
     sum: state.basket.sum,
   }));
 
   // Загрузка тестовых данных при первом рендере
   useEffect(async () => {
-    await store.catalog.load(1);
+    await store.catalog.load(select.pageNumber, select.limit);
   }, []);
 
   const store = useStore();
@@ -40,7 +42,7 @@ function Main() {
     <Layout head={<h1>Магазин</h1>}>
       <BasketSimple onOpen={callbacks.openModal} amount={select.amount} sum={select.sum} />
       <List items={select.items} renderItem={renders.item} />
-      <Paginator pageNumber={select.pageNumber} load={store.catalog.load} />
+      <Paginator pageNumber={select.pageNumber} limit={select.limit} count={select.count} load={store.catalog.load} />
     </Layout>
   );
 }

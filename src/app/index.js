@@ -14,26 +14,27 @@ function App() {
   }));
 
   return (
-    <Routes>
-      <Route
-        path={"/"}
-        element={
-          <>
-            <Main />
-            {select.name === "basket" && <Basket />}
-          </>
-        }
-      />
-      <Route
-        path={"/article/:articleId"}
-        element={
-          <>
-            <Article />
-            {select.name === "basket" && <Basket />}{" "}
-          </>
-        }
-      />
-    </Routes>
+    <div>
+      <Routes>
+        <Route
+          path={"/"}
+          element={
+            <>
+              <Main />
+            </>
+          }
+        />
+        <Route
+          path={"/article/:articleId"}
+          element={
+            <>
+              <Article />
+            </>
+          }
+          />
+      </Routes>
+      {select.name === "basket" && <Basket />}{" "}
+    </div>
   );
 }
 
