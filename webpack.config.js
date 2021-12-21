@@ -17,7 +17,6 @@ let config = {
     filename: '[name].js',
     // Очистить ./dist от предыдущей сборки
     clean: true,
-    publicPath: "/",
   },
   plugins: [
     // Сборка стилей в отдельный файл

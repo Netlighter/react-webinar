@@ -2,6 +2,7 @@
  * Базовый класс модуля хранилища
  */
 class StoreModule {
+
   /**
    * @param store {Store} Ссылка на хранилище
    * @param name {String} Навзание модуля (ключ данных в state)
@@ -36,6 +37,17 @@ class StoreModule {
       ...this.store.getState(),
       [this.name]: state,
     });
+  }
+
+  /**
+   * Обновление состояния
+   * @param patch
+   */
+  updateState(patch) {
+    this.setState({
+      ...this.getState(),
+      ...patch
+    })
   }
 }
 

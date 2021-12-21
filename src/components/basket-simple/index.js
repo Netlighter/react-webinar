@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import propTypes from 'prop-types';
 import plural from "plural-ru";
 import numberFormat from "../../utils/number-format";
@@ -8,9 +7,6 @@ import './styles.css';
 function BasketSimple({sum, amount, onOpen}) {
   return (
     <div className='BasketSimple'>
-      <Link className="BasketSimple__return-button" style={{ marginLeft: "2em" }} to={"/"}>
-        Главная
-      </Link>
       <span className="BasketSimple__label">В корзине:</span>
       <span className="BasketSimple__total">
       {amount
