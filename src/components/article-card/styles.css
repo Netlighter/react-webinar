@@ -7,21 +7,28 @@
   margin: 20px 0;
 }
 
-
 .ArticleCard-Prop {
   margin: 20px 0;
   display: flex;
   justify-content: flex-start;
 }
 
-.ArticleCard-Prop_size_big{
+.ArticleCard-Prop_size_big {
   font-size: 24px;
 }
 
-.ArticleCard-Label{
+.ArticleCard-Label {
   padding-right: 10px;
 }
 
-.ArticleCard-Value{
+.ArticleCard-Value {
   font-weight: bold;
+}
+
+.ArticleCard-Edit {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  padding: 0;
+  font-size: 16px;
 }

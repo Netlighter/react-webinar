@@ -4,12 +4,11 @@ import useStore from "../../utils/use-store";
 import useSelector from "../../utils/use-selector";
 import { useParams } from "react-router-dom";
 import Spinner from "../../components/spinner";
-import ArticleCard from "../../components/article-card";
 import Header from "../../containers/header";
 import useInit from "../../utils/use-init";
-import ArticleEditCard from "../../components/edit-card";
+import EditCard from "../../components/edit-card";
 
-function Article() {
+function Edit() {
   const store = useStore();
   // Параметры из пути
   const params = useParams();
@@ -25,7 +24,8 @@ function Article() {
   }));
 
   const callbacks = {
-    addToBasket: useCallback((_id) => store.basket.add(_id), [store]),
+    onSave: useCallback((localData) => store.article.postOnSave(localData), [store]),
+    getCountries: useCallback(() => store.article.getCountries(), [store]),
   };
 
   return (
@@ -33,10 +33,10 @@ function Article() {
       <Header />
 
       <Spinner active={select.waiting}>
-        <ArticleCard article={select.article} />
+        <EditCard article={select.article} onSave={callbacks.onSave} />
       </Spinner>
     </Layout>
   );
 }
 
-export default React.memo(Article);
+export default React.memo(Edit);

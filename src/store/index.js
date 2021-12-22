@@ -1,3 +1,5 @@
+import ArticleStore from "./article";
+
 /**
  * Хранилище состояния приложения
  */
@@ -85,6 +87,15 @@ class Store {
   get catalog(){
     return this.get('catalog');
   }
+
+   /**
+   * @return {ArticleStore}
+   */
+    get article(){
+      return this.get('article');
+    }
+
+
 }
 
 export default Store;

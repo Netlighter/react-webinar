@@ -1,0 +1,49 @@
+/* Пункт списка */
+.ArticleEdit {
+  padding: 20px 35px;
+}
+
+.ArticleEdit-Description {
+  margin: 20px 0;
+}
+
+.ArticleEdit-Prop {
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ArticleEdit-Prop_size_big {
+  font-size: 24px;
+}
+
+.ArticleEdit-Label {
+  padding-right: 10px;
+}
+
+.ArticleEdit-Value {
+  font-weight: bold;
+}
+
+.ArticleEdit-Edit {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  padding: 0;
+  font-size: 16px;
+}
+
+.ArticleEdit-Form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 300px;
+  gap: 1rem;
+}
+
+.ArticleEdit-Field {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 3px;
+}

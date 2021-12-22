@@ -26,6 +26,7 @@ class CatalogStore extends StoreModule {
         page: 1,
         limit: 10,
         sort: 'key',
+        category: '',
         query: ''
       },
       waiting: true
