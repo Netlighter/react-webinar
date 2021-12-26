@@ -7,7 +7,7 @@ class ArticleStore extends StoreModule {
   initState() {
     return {
       data: {},
-      countries: {},
+      status: {},
       waiting: true,
     };
   }
@@ -19,7 +19,6 @@ class ArticleStore extends StoreModule {
     this.updateState({
       waiting: true,
       data: {},
-
     });
 
     try {
@@ -28,7 +27,6 @@ class ArticleStore extends StoreModule {
       );
       const json = await response.json();
 
-     
       if (json.error) throw new Error(json.error);
 
       this.updateState({
@@ -43,40 +41,37 @@ class ArticleStore extends StoreModule {
     }
   }
 
-  async loadCountries() {
-    const countries = await fetch(
-      `/api/v1/articles/${id}?fields=*,maidIn(title,code),category(title)`
-    );
-    //setState
 
+  async update(data) {
+    this.setState({ ...this.getState(), error: {} });
+
+    console.log(data)
+
+    try {
+      const response = await fetch(`/api/v1/articles/${data._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await response.json();
+      console.log("updateJson", json);
+      const { result, error } = await json;
+      if (error) {
+        this.setState({
+          ...this.getState(),
+          status: { ...error, data: { issues: error.data.issues } },
+        });
+        console.log(this.getState())
+      } else {
+        this.setState({ ...this.getState(), data: { ...result } });
+        // вывод ошибок
+      }
+    } catch (e) {
+      throw new Error(e);
+    }
   }
-
-  async postOnSave(localData) {
-    console.log(localData)
-
-    // const response = await fetch(`/api/v1/articles/${_id}`,{
-    //   method: 'PUT',
-    //   headers: {'content-type': 'application/json'},
-    //   body: JSON.stringify(
-    //     {
-    //       "_id": "61c0a9cb8f67e811d55abb40",
-    //       "title": "Товар #11",
-    //       "description": "Описание товара из множества букв",
-    //       "price": 3970.52,
-    //       "maidIn": {
-    //         "_id": "61c0a9b58f67e811d55ab056"
-    //       },
-    //       "edition": 2011,
-    //       "category": {
-    //         "_id": "61c0a9cb8f67e811d55abb32"
-    //       }
-    //     }
-    //   )
-    // }
-    
-    // )
-  }
-
 }
 
 export default ArticleStore;

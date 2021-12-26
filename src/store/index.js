@@ -95,6 +95,13 @@ class Store {
       return this.get('article');
     }
 
+    get countries(){
+      return this.get('countries');
+    }
+
+    get categories(){
+      return this.get('categories');
+    }
 
 }
 

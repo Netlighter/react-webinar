@@ -3,87 +3,64 @@ import propTypes from "prop-types";
 import { cn } from "@bem-react/classname";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import Input from "../../components/input";
+import Textarea from "../../components/textarea";
+import Select from "../../components/select";
 
-function EditCard({ article, onSave }) {
+function EditCard({ article, status, onSave, countries, categories }) {
   // CSS классы по БЭМ
   const className = cn("ArticleEdit");
 
   const [state, setState] = useState(article);
 
-  console.log(state);
-
-  const onChange = (e) => {
+  const onChange = (name) => (value) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
-    console.log(e);
+
   };
 
   return (
     <div className={className()}>
-      <form className={className("Form")} action="url">
+      <form className={className("Form")} onSubmit={(e) => {e.preventDefault(); {onSave(state)}}}>
         <div className={className("Field")}>
           Название
-          <input value={state.title} name="title" type="text" onChange={onChange} />
+          <Input onChange={onChange("title")} value={state.title} />
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
         </div>
 
         <div className={className("Field")}>
           Описание
-          <textarea value={state.description} name="description" onChange={onChange} />
+          <Textarea value={state.description} onChange={onChange("description")} />
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
         </div>
 
         <div className={className("Field")}>
           Страна производитель
-          <select name="country">
-            {/* {countriesList.map((country) => 
-              <option
-                classnames
-                value={country.title}
-                id={country.id}
-                selected={country.title === article.maidIn?.title ? true : false}
-              >
-                {country.title}
-              </option>
-            )} */}
-            <option value={state.maidIn?.title} selected="true" id="select-1640092838744-0">
-              {state.maidIn?.title}
-            </option>
-            <option value="option-2" id="select-1640092838744-1">
-              Option 2
-            </option>
-            <option value="option-3" id="select-1640092838744-2">
-              Option 3
-            </option>
-          </select>
+          <Select options={countries} value={state.maidIn?._id} onChange={onChange("maidIn")} />
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
         </div>
 
         <div className={className("Field")}>
           Категория
-          <select name="category">
-            <option value={state.category?.title} selected="true" id="select-1640092838744-0">
-              {state.category?.title}
-            </option>
-            <option value="option-2" id="select-1640092838744-1">
-              Option 2
-            </option>
-            <option value="option-3" id="select-1640092838744-2">
-              Option 3
-            </option>
-          </select>
+          <Select options={categories} value={state.category?._id} onChange={onChange("category")} />
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
         </div>
 
         <div className={className("Field")}>
           Год выпуска
-          <input value={state.edition} name="edition" onChange={onChange} />
+          <Input onChange={onChange("edition")} value={state.edition} />
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
         </div>
 
         <div className={className("Field")}>
           Цена (₽)
-          <input value={state.price} name="price" onChange={onChange} />
+          <Input onChange={onChange("price")} value={state.price} />
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
         </div>
 
-        <button onSubmit={(state) => onSave(state)}>Сохранить</button>
+        <button type="submit" className={className("Submit")}>Сохранить</button>
       </form>
     </div>
   );
@@ -91,12 +68,12 @@ function EditCard({ article, onSave }) {
 
 EditCard.propTypes = {
   article: propTypes.object.isRequired,
-  onAdd: propTypes.func,
+  onSave: propTypes.func,
 };
 
 EditCard.defaultProps = {
   article: {},
-  onAdd: () => {},
+  onSave: () => {},
 };
 
 export default React.memo(EditCard);

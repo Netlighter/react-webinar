@@ -7,6 +7,7 @@ import Spinner from "../../components/spinner";
 import Header from "../../containers/header";
 import useInit from "../../utils/use-init";
 import EditCard from "../../components/edit-card";
+import { generateSelectArray, generateTreeArray } from "../../utils/tree-select";
 
 function Edit() {
   const store = useStore();
@@ -16,16 +17,20 @@ function Edit() {
   // Начальная загрузка
   useInit(async () => {
     await store.article.load(params.id);
+    await store.countries.load();
+    await store.categories.load();
   }, [params.id]);
 
   const select = useSelector((state) => ({
     article: state.article.data,
     waiting: state.article.waiting,
+    status: state.article.status,
+    countries: state.countries.items,
+    categories: state.categories.items,
   }));
 
   const callbacks = {
-    onSave: useCallback((localData) => store.article.postOnSave(localData), [store]),
-    getCountries: useCallback(() => store.article.getCountries(), [store]),
+    onSave: useCallback((localData) => store.article.update(localData), [store]),
   };
 
   return (
@@ -33,7 +38,13 @@ function Edit() {
       <Header />
 
       <Spinner active={select.waiting}>
-        <EditCard article={select.article} onSave={callbacks.onSave} />
+        <EditCard
+          article={select.article}
+          status={select.status}
+          onSave={callbacks.onSave}
+          countries={generateSelectArray(select.countries)}
+          categories={generateSelectArray(generateTreeArray(select.categories))}
+        />
       </Spinner>
     </Layout>
   );

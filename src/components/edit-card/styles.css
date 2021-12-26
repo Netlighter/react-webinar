@@ -47,3 +47,9 @@
   flex-direction: column;
   gap: 3px;
 }
+
+p.Error {
+  margin: 0;
+  color: red;
+  font-style: italic;
+}
