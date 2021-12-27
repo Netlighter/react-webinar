@@ -1,3 +1,4 @@
+import { errorFormat } from "../../utils/error-format";
 import StoreModule from "../module";
 
 class ArticleStore extends StoreModule {
@@ -19,6 +20,7 @@ class ArticleStore extends StoreModule {
     this.updateState({
       waiting: true,
       data: {},
+      status: {}
     });
 
     try {
@@ -41,11 +43,8 @@ class ArticleStore extends StoreModule {
     }
   }
 
-
   async update(data) {
-    this.setState({ ...this.getState(), error: {} });
-
-    console.log(data)
+    this.setState({ ...this.getState(), status: {} });
 
     try {
       const response = await fetch(`/api/v1/articles/${data._id}`, {
@@ -55,18 +54,19 @@ class ArticleStore extends StoreModule {
         },
         body: JSON.stringify(data),
       });
+
       const json = await response.json();
-      console.log("updateJson", json);
       const { result, error } = await json;
       if (error) {
         this.setState({
           ...this.getState(),
-          status: { ...error, data: { issues: error.data.issues } },
+          status: {
+            ...error,
+            data: { ...error, issues: errorFormat(error.data.issues, "path") },
+          },
         });
-        console.log(this.getState())
       } else {
         this.setState({ ...this.getState(), data: { ...result } });
-        // вывод ошибок
       }
     } catch (e) {
       throw new Error(e);

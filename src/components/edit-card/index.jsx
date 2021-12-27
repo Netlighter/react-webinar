@@ -27,37 +27,37 @@ function EditCard({ article, status, onSave, countries, categories }) {
         <div className={className("Field")}>
           Название
           <Input onChange={onChange("title")} value={state.title} />
-          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues["title.'ru'"]?.message}</p>}
         </div>
 
         <div className={className("Field")}>
           Описание
           <Textarea value={state.description} onChange={onChange("description")} />
-          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues.description?.message}</p>}
         </div>
 
         <div className={className("Field")}>
           Страна производитель
           <Select options={countries} value={state.maidIn?._id} onChange={onChange("maidIn")} />
-          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues.country?.message}</p>}
         </div>
 
         <div className={className("Field")}>
           Категория
           <Select options={categories} value={state.category?._id} onChange={onChange("category")} />
-          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues.category?.message}</p>}
         </div>
 
         <div className={className("Field")}>
           Год выпуска
           <Input onChange={onChange("edition")} value={state.edition} />
-          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues.edition?.message}</p>}
         </div>
 
         <div className={className("Field")}>
           Цена (₽)
           <Input onChange={onChange("price")} value={state.price} />
-          {status?.id=="400.001" && <p className="Error">{status.data?.issues[0].message}</p>}
+          {status?.id=="400.001" && <p className="Error">{status.data?.issues.price?.message}</p>}
         </div>
 
         <button type="submit" className={className("Submit")}>Сохранить</button>
