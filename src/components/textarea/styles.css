@@ -1,9 +1,13 @@
-.Input{
+.Textarea{
   font-size: 16px;
   padding: 2px;
+  height: 200px;
+  width: auto;
 }
 
-.Input_theme_big{
-  width: 300px;
+.Textarea_theme_big{
+  display: flex;
+  justify-content: center;
+  
 }
 

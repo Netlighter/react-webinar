@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import Layout from "../../components/layout";
 import useStore from "../../utils/use-store";
 import useSelector from "../../utils/use-selector";
@@ -33,6 +33,15 @@ function Edit() {
     onSave: useCallback((localData) => store.article.update(localData), [store]),
   };
 
+  const options = {
+    countries: useMemo(() => {
+      return generateSelectArray(select.countries);
+    }, []),
+    categories: useMemo(() => {
+      return generateSelectArray(generateTreeArray(select.categories));
+    }),
+  };
+
   return (
     <Layout head={<h1>{select.article.title}</h1>}>
       <Header />
@@ -42,8 +51,8 @@ function Edit() {
           article={select.article}
           status={select.status}
           onSave={callbacks.onSave}
-          countries={generateSelectArray(select.countries)}
-          categories={generateSelectArray(generateTreeArray(select.categories))}
+          countries={options.countries}
+          categories={options.categories}
         />
       </Spinner>
     </Layout>

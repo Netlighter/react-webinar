@@ -37,8 +37,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  width: 300px;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .ArticleEdit-Field {
@@ -52,4 +51,8 @@ p.Error {
   margin: 0;
   color: red;
   font-style: italic;
+}
+
+button {
+  width: fit-content;
 }
